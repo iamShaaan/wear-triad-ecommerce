@@ -8,6 +8,7 @@ import { AdminLayout } from './layouts/AdminLayout';
 import { Home } from './pages/Home';
 import { Shop } from './pages/Shop';
 import { AdminTasks } from './pages/admin/AdminTasks';
+import { AdminSettings } from './pages/admin/AdminSettings';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<div className="font-heading text-3xl text-gray-800">Welcome, Admin.</div>} />
                     <Route path="tasks" element={<AdminTasks />} />
-                    <Route path="settings" element={<div>Settings Module Locked</div>} />
+                    <Route path="settings" element={<AdminSettings />} />
                 </Route>
             </Routes>
         </BrowserRouter>
