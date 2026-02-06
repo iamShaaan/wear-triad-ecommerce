@@ -1,4 +1,3 @@
-// File: src/pages/admin/AdminSettings.tsx
 import React, { useState } from 'react';
 import { seedDatabase } from '@/lib/seed';
 import { Database, AlertTriangle, Check } from 'lucide-react';

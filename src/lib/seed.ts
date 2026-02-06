@@ -1,4 +1,3 @@
-// File: src/lib/seed.ts
 import { collection, writeBatch, doc } from "firebase/firestore";
 import { db } from "./firebase";
 
