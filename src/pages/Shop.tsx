@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '@/lib/firestore';
 import { Product } from '@/types';
+import { useCart } from '@/context/CartContext';
 
 export const Shop = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const loadData = async () => {
-            // For now, if DB is empty, this returns empty array.
-            // In a real scenario, we would seed data here.
             const data = await getProducts() as Product[];
             setProducts(data);
             setLoading(false);
@@ -31,18 +31,28 @@ export const Shop = () => {
             ) : products.length === 0 ? (
                 <div className="text-center py-20 bg-gray-100 rounded-lg">
                     <p className="font-heading text-2xl text-gray-400 mb-2">Inventory Empty</p>
-                    <p className="font-sans text-gray-500">No products found in database path: apps/wear_triad.../products</p>
+                    <p className="font-sans text-gray-500">No products found in database.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                     {products.map((product) => (
                         <div key={product.id} className="group cursor-pointer">
                             <div className="bg-gray-200 aspect-square mb-4 relative overflow-hidden">
-                                {product.image ? (
-                                    <img src={product.image} alt={product.name} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
-                                ) : (
-                                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-heading text-lg">NO IMAGE</div>
-                                )}
+                                <img src={product.image} alt={product.name} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+
+                                {/* ADD TO CART BUTTON OVERLAY */}
+                                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            addToCart(product);
+                                        }}
+                                        className="w-full bg-brand-primary text-white font-heading py-3 uppercase tracking-wider hover:bg-red-800 transition-colors shadow-lg"
+                                    >
+                                        Add to Cart
+                                    </button>
+                                </div>
+
                                 <div className="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-bold font-sans uppercase tracking-widest">
                                     {product.category}
                                 </div>
