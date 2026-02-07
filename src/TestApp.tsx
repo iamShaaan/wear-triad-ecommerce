@@ -1,11 +1,15 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 export function TestApp() {
-    console.log("TestApp: Rendering");
+    console.log("TestApp: Rendering with BrowserRouter");
     return (
-        <div style={{ padding: '100px', backgroundColor: '#f0f0f0', color: '#333' }}>
-            <h1>TEST APP SUCCESS</h1>
-            <p>This confirms that separate module imports are working.</p>
-        </div>
+        <BrowserRouter>
+            <div style={{ padding: '100px', backgroundColor: '#e0f0e0', color: '#333' }}>
+                <h1>TEST APP SUCCESS (ROUTER ADDED)</h1>
+                <p>This confirms that BrowserRouter is not the problem.</p>
+            </div>
+        </BrowserRouter>
     );
 }
+
