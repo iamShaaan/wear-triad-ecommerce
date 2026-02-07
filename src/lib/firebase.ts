@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
+console.log("Firebase: Initializing with Project ID:", import.meta.env.VITE_FIREBASE_PROJECT_ID);
+
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -11,6 +13,12 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
+console.log("Firebase: Initializing with Project ID:", firebaseConfig.projectId);
+
 const app = initializeApp(firebaseConfig);
+console.log("Firebase: App Initialized Successfully");
+
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+
+
