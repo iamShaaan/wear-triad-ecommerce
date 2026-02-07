@@ -19,6 +19,7 @@ const APPS_COLLECTION = "apps";
  * Path: apps/{APP_ID}/{collectionName}
  */
 const getAppCollectionRef = (collectionName: string) => {
+    if (!db) throw new Error("Firebase Firestore not initialized. Check your environment variables.");
     return collection(db, APPS_COLLECTION, APP_ID, collectionName);
 };
 

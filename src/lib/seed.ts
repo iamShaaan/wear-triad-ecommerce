@@ -37,6 +37,8 @@ const PRODUCTS = [
 ];
 
 export const seedDatabase = async () => {
+    if (!db) throw new Error("Firebase Firestore not initialized. Check your environment variables.");
+
     // 1. Get a Batch Reference (Atomic Operation)
     const batch = writeBatch(db);
     const appRef = collection(db, "apps", "wear_triad_e_commerce_website_v1", "products");
