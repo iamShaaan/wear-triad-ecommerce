@@ -1,24 +1,28 @@
+console.log("DEBUG: Entry Point Executing");
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+// Temporarily disable App import to isolate bootstrap
+// import App from './App.tsx'
 import './index.css'
 
-console.log("System: Starting React Mount...");
+console.log("DEBUG: Imports Loaded");
 
 const root = document.getElementById('root');
-if (!root) {
-    console.error("System: Root element not found!");
-} else {
+if (root) {
     try {
         ReactDOM.createRoot(root).render(
-            <React.StrictMode>
-                <App />
-            </React.StrictMode>
+            <h1 style={{ color: 'red', fontSize: '100px', padding: '50px' }}>
+                PRODUCTION DEBUG: MOUNT SUCCESS
+            </h1>
         );
-        console.log("System: Mount Success");
-    } catch (error) {
-        console.error("System: Mount Fatal Error", error);
-        root.innerHTML = `<div style="padding: 20px; color: red;">Mount Error: ${error}</div>`;
+        console.log("DEBUG: Render Called");
+    } catch (e) {
+        console.error("DEBUG: Render Error", e);
+        root.innerHTML = "<h1>RENDER ERROR</h1>";
     }
+} else {
+    console.error("DEBUG: Root Not Found");
 }
+
 
